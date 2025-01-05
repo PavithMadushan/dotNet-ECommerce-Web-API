@@ -10,9 +10,23 @@ namespace LearnAPI.Controllers
     {
         private readonly ICustomerService service;
 
-        public CustomerController(ICustomerService service) { 
-            this.service = service;                 
-        
-        }         
+        public CustomerController(ICustomerService service)
+        {
+            this.service = service;
+
+        }
+        [HttpGet]
+        public IActionResult Get()
+        {
+
+            var data = this.service.Getall();
+            if (data == null)
+            {
+                return NotFound();
+
+            }
+            return Ok(data);
+        }
     }
+
 }
